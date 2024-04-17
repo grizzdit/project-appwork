@@ -213,12 +213,17 @@ input[type="checkbox"] {
 
 
 @media (max-width: 768px) {
+  .ham-contain {
+    width: 100%;
+  }
+  
   .ham-wrapper {
     padding: 1rem;
-    display: flex;
-    background-color: transparent;
+    margin-bottom: 1rem;
+    /* display: flex; */
+    /* background-color: transparent; */
     border-bottom: 2px solid black;
-    margin-right: 25px;
+    /* margin-right: 25px; */
     width: 100%;
   }
 
@@ -238,6 +243,10 @@ input[type="checkbox"] {
     background-color: #007bff;
     border-radius: 10px;
     transition: 0.3s ease;
+  }
+
+  .ham-menu.active-menu {
+    z-index: 600;
   }
 
   .ham-menu.active-menu span:nth-child(1) {
@@ -281,18 +290,20 @@ input[type="checkbox"] {
   }
 
   .sidebar {
-    display: none;
+    margin-left: -200px;
+    z-index: 500;
+    position: fixed;
+    top: 0;
+    height: 100%;
+    left: 0;
+    transition: 0.3s ease-in-out;
   }
-
+  
   .sidebar.active-bar {
-    width: 60%; /* Ubah menjadi 100% agar full lebar */
-    height: auto; /* Sesuaikan tinggi secara otomatis */
-    margin-left: 5px; /* Hapus margin kiri negatif */
-    position: fixed; /* Buat sidebar tetap pada posisi */
-    top: 0; /* Atur posisi atas */
-    left: 0; /* Atur posisi kiri */
-    transition: transform 0.3s ease-in-out; /* Transisi untuk animasi */
-    transform: translateX(-100%); /* Sembunyikan sidebar ke kiri */
+    box-shadow: 65px 0px 150px 500px rgba(0,0,0,0.75); /* background overlay (cheap version) */
+    -webkit-box-shadow: 65px 0px 150px 500px rgba(0,0,0,0.75);
+    -moz-box-shadow: 65px 0px 150px 500px rgba(0,0,0,0.75);
+    margin-left: 0;
   }
 
   
