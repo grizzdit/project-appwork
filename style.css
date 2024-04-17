@@ -83,6 +83,7 @@ body {
 .dashContent {
   display: none;
   height: 400px;
+  overflow-y: auto; /* prevent element overflowing */
 }
 
 .dashContent .title {
@@ -262,6 +263,11 @@ input[type="checkbox"] {
     transform: rotate(-45deg) translate(7px, -6px);
   }
 
+  .dashContent {
+    height: 85vh; /* mobile scroll feature */
+    padding: 0 10px 0;
+  }
+
   .dashContent .title {
     margin-left: 0;
     font-family: 'From Cartoon Blocks', sans-serif;
@@ -305,8 +311,6 @@ input[type="checkbox"] {
     -moz-box-shadow: 65px 0px 150px 500px rgba(0,0,0,0.75);
     margin-left: 0;
   }
-
-  
 
   .content {
     height: auto;
