@@ -1,0 +1,306 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: green;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@font-face {
+  font-family: 'From Cartoon Blocks'; /* Nama yang diberikan kepada font */
+  src: url('./font/From\ Cartoon\ Blocks.ttf') format('truetype'); /* Ganti 'path/to/font.ttf' dengan path menuju file font Anda */
+  /* Jika Anda memiliki file .otf, gantilah 'truetype' dengan 'opentype' */
+}
+
+.container {
+  display: flex;
+  height: 400px;
+  width: 800px;
+  gap: 8px;
+}
+
+.sidebar {
+  display: block;
+  width: 200px;
+  background-color: #fff;
+  border: none;
+  font-family: 'Montserrat',Arial;
+}
+
+.sidebar > h3 {
+  text-align: center;
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column; /* Mengubah ini dari column menjadi row */
+  line-height: 30px;
+}
+
+.sidebar nav div {
+  width: auto;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.sidebar nav div:hover {
+  background-color: beige;
+  opacity: 20;
+}
+
+.active {
+  border-right: 5px solid rgb(49, 52, 53);
+}
+
+.active-bar {
+  margin-left: 20px;
+}
+
+.content {
+  flex: 1;
+  background-color: #FFF;
+  border: none;
+}
+
+.footer {
+  display: flex;
+  width: 100%;
+  background-color: aqua;
+}
+
+.ham-menu {
+  display: flex; /* Sembunyikan secara default */
+}
+
+/* Content */
+.dashContent {
+  display: none;
+  height: 400px;
+}
+
+.dashContent .title {
+  margin-left: 30px;
+  font-family: 'From Cartoon Blocks', sans-serif;
+}
+
+
+
+/* PAGE 1 */
+#page-1 {
+  position: relative;
+}
+
+#page-1 > .bg-1 img{
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 50%;
+  height: 50%;
+  object-fit: cover;
+}
+
+.wrapper {
+  max-width: 600px;
+  padding: 0 20px;
+}
+.wrapper .parent-tab,
+.wrapper .child-tab {
+  margin-bottom: 8px;
+  border-radius: 3px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.18);
+}
+.wrapper .parent-tab label,
+.wrapper .child-tab label {
+  background: #007bff;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  border-radius: 3px;
+  position: relative;
+  z-index: 99;
+  transition: all 0.3s ease;
+}
+.wrapper .parent-tab label:hover {
+  background: #006fe6;
+}
+.parent-tab input:checked ~ label,
+.child-tab input:checked ~ label {
+  border-radius: 3px 3px 0 0;
+  background: #006fe6;
+}
+.wrapper label span {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  text-shadow: 0 -1px 1px #0056b3;
+}
+.wrapper .child-tab label span {
+  font-size: 17px;
+}
+.parent-tab label .icon {
+  position: relative;
+  height: 30px;
+  width: 30px;
+  font-size: 15px;
+  color: #007bff;
+  display: block;
+  background: #fff;
+  border-radius: 50%;
+  text-shadow: 0 -1px 1px #0056b3;
+}
+.wrapper .child-tab label .icon {
+  height: 27px;
+  width: 27px;
+}
+.parent-tab label .icon i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.parent-tab input:checked ~ label .icon i:before,
+.child-tab input:checked ~ label .icon i:before {
+  content: "\f068";
+}
+.wrapper .parent-tab .content,
+.wrapper .child-tab .sub-content {
+  max-height: 0px;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 0 0 3px 3px;
+  transition: all 0.4s ease;
+}
+.parent-tab input:checked ~ .content,
+.child-tab input:checked ~ .sub-content {
+  max-height: 100vh;
+}
+.tab-3 input:checked ~ .content {
+  padding: 15px 20px;
+}
+.parent-tab .content p,
+.child-tab .sub-content p {
+  padding: 15px 20px;
+  font-size: 16px;
+}
+.child-tab .sub-content p {
+  font-size: 15px;
+}
+input[type="radio"],
+input[type="checkbox"] {
+  display: none;
+}
+/* PAGE 1 END */
+
+/* PAGE 2 */
+
+/* PAGE 2 END */
+
+
+/* PAGE 3 */
+
+/* PAGE 3 END */
+
+
+
+@media (max-width: 768px) {
+  .ham-wrapper {
+    padding: 1rem;
+    display: flex;
+    background-color: transparent;
+    border-bottom: 2px solid black;
+    margin-right: 25px;
+    width: 100%;
+  }
+
+  .ham-menu {
+    height: 40px;
+    width: 40px;
+    margin-left: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: 0.3s ease;
+  }
+
+  .ham-menu span {
+    height: 5px;
+    width: 100%;
+    background-color: #007bff;
+    border-radius: 10px;
+  }
+
+  .ham-menu.active-menu span:nth-child(1) {
+    transform: rotate(45deg) translate(14px, 15px);
+  }
+  .ham-menu.active-menu span:nth-child(2) {
+    opacity: 0;
+    width: 0;
+  }
+  .ham-menu.active-menu span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+  }
+
+  .dashContent .title {
+    margin-left: 0;
+    font-family: 'From Cartoon Blocks', sans-serif;
+  }
+
+  body {
+    flex-direction: column;
+    margin-top: 0;
+    background-color: #fff;
+  }
+
+  h1 {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 28px;
+  }
+
+  p {
+    font-size: 30px;
+  }
+  
+  .container {
+    width: 100%;
+    height: 100%;
+    gap: 0;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .sidebar.active-bar {
+    width: 60%; /* Ubah menjadi 100% agar full lebar */
+    height: auto; /* Sesuaikan tinggi secara otomatis */
+    margin-left: 5px; /* Hapus margin kiri negatif */
+    position: fixed; /* Buat sidebar tetap pada posisi */
+    top: 0; /* Atur posisi atas */
+    left: 0; /* Atur posisi kiri */
+    transition: transform 0.3s ease-in-out; /* Transisi untuk animasi */
+    transform: translateX(-100%); /* Sembunyikan sidebar ke kiri */
+  }
+
+  
+
+  .content {
+    height: auto;
+    border: none;
+  }
+  .hamburger {
+    display: block;
+    cursor: pointer;
+  }
+}

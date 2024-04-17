@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+</head>
+<body>
+  <div class="container">
+    <div class="sidebar">
+      <h3>what you doing?</h3>
+      <nav>
+        <div id="btn-1" class="dashBtn">Dashboard</div>
+        <div id="btn-2" class="dashBtn">TODO-List</div>
+        <div id="btn-3" class="dashBtn">Calculator</div>
+        <div id="btn-4" class="dashBtn">Sign</div>
+      </nav>
+    </div>
+    <div class="content">
+      
+      <!-- PAGE 1 -->
+      <div id="page-1" class="dashContent">
+        <div class="title">
+          <nav class="ham-wrapper">
+            <div class="ham-menu">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </nav>
+          <h1>Welcome To App-Work📢</h1>
+        </div>
+
+        <div class="wrapper">
+           <!-- Accordion Heading One -->
+          <div class="parent-tab">
+            <input type="radio" name="tab" id="tab-1" checked>
+            <label for="tab-1">
+              <span>Introduction of our team-work</span>
+              <div class="icon"><i class="fas fa-plus"></i></div>
+            </label>
+            <div class="content">
+              <p>Kelompok : Aboy <br>
+                 Projek   : App-Work <br>
+                 Anggota  : Roihan,Jibril,Adhitya,Panglima
+              </p>
+            </div>
+          </div>
+
+           <!-- Accordion Heading Two -->
+          <div class="parent-tab">
+            <input type="radio" name="tab" id="tab-2">
+            <label for="tab-2">
+              <span>Description To Project</span>
+              <div class="icon"><i class="fas fa-plus"></i></div>
+            </label>
+            <div class="content">
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing thelit. Quam, repellendus facere, id porro magnam blanditiiss quoteos dolores ratione quidem ipsam esse quos pariatur, repellat obcaecati!</p>
+            </div>
+          </div>
+
+          <!-- Accordion Heading Three -->
+          <div class="parent-tab">
+            <input type="radio" name="tab" id="tab-6">
+            <label for="tab-6">
+              <span>Tech That We Use and Ideas by💡</span>
+              <div class="icon"><i class="fas fa-plus"></i></div>
+            </label>
+            <div class="content">
+              <p>This web made with Html,Css,Js <br>
+                Logic and Structure  : Jibril & Roihan <br>
+                Design and responsive: Adhitya & Panglima
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- PAGE 1 - DONE -->
+
+      <!-- Page 2 BAGIAN ADIT -->
+      <div id="page-2" class="dashContent">
+        <div class="title">
+          <h1>Simple Notes📝</h1>
+        </div>
+        <div class="todo-container">
+          <input type="text" id="todo-input" placeholder="Tambahkan tugas baru...">
+          <button id="todo-btn">Tambah</button>
+          <ul id="todo-list"></ul>
+        </div>
+        <div class="showData"></div>
+      </div>
+      <div id="page-3" class="dashContent">
+        <div class="title">
+          <h1>Calculator📱</h1>
+        </div>
+      </div>
+      <div id="page-4" class="dashContent">
+        <div class="title">
+          <h1>Download Sign Svg🖨</h1>
+        </div>
+      </div>
+      <!-- Page 2 - DONE -->
+    </div>
+  </div>
+  <script>
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
