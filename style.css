@@ -230,23 +230,25 @@ input[type="checkbox"] {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    transition: 0.3s ease;
   }
-
+  
   .ham-menu span {
     height: 5px;
     width: 100%;
     background-color: #007bff;
     border-radius: 10px;
+    transition: 0.3s ease;
   }
 
   .ham-menu.active-menu span:nth-child(1) {
     transform: rotate(45deg) translate(14px, 15px);
   }
+
   .ham-menu.active-menu span:nth-child(2) {
     opacity: 0;
     width: 0;
   }
+
   .ham-menu.active-menu span:nth-child(3) {
     transform: rotate(-45deg) translate(7px, -6px);
   }

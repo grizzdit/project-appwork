@@ -8,7 +8,6 @@ const sidebar = document.querySelector('.sidebar')
 hammenu.addEventListener('click', () => {
   hammenu.classList.toggle('active-menu')
   sidebar.classList.toggle('active-bar')
-
 })
 
 
