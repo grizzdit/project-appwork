@@ -5,13 +5,12 @@ const allContent = document.querySelectorAll('.dashContent')
 const hammenu = document.querySelector('.ham-menu')
 const sidebar = document.querySelector('.sidebar')
 
-hammenu.addEventListener('click', () => {
-  hammenu.classList.toggle('active-menu')
-  sidebar.classList.toggle('active-bar')
+hammenu.addEventListener('click', () => handleSidebarToggle());
 
-})
-
-
+function handleSidebarToggle() {
+  hammenu.classList.toggle('active-menu');
+  sidebar.classList.toggle('active-bar');
+}
 
 function setPages(btn) {
   const button = btn.closest('div');
@@ -24,6 +23,7 @@ function setPages(btn) {
 
   // Save the active page id to local storage
   localStorage.setItem('activePageId', activeId);
+  handleSidebarToggle(); // toggle sidebar every page changes
 }
 
 // Set the active page based on saved value in local storage

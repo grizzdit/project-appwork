@@ -83,6 +83,7 @@ body {
 .dashContent {
   display: none;
   height: 400px;
+  overflow-y: auto; /* prevent element overflowing */
 }
 
 .dashContent .title {
@@ -213,12 +214,17 @@ input[type="checkbox"] {
 
 
 @media (max-width: 768px) {
+  .ham-contain {
+    width: 100%;
+  }
+  
   .ham-wrapper {
     padding: 1rem;
-    display: flex;
-    background-color: transparent;
+    margin-bottom: 1rem;
+    /* display: flex; */
+    /* background-color: transparent; */
     border-bottom: 2px solid black;
-    margin-right: 25px;
+    /* margin-right: 25px; */
     width: 100%;
   }
 
@@ -230,25 +236,36 @@ input[type="checkbox"] {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    transition: 0.3s ease;
   }
-
+  
   .ham-menu span {
     height: 5px;
     width: 100%;
     background-color: #007bff;
     border-radius: 10px;
+    transition: 0.3s ease;
+  }
+
+  .ham-menu.active-menu {
+    z-index: 600;
   }
 
   .ham-menu.active-menu span:nth-child(1) {
     transform: rotate(45deg) translate(14px, 15px);
   }
+
   .ham-menu.active-menu span:nth-child(2) {
     opacity: 0;
     width: 0;
   }
+
   .ham-menu.active-menu span:nth-child(3) {
     transform: rotate(-45deg) translate(7px, -6px);
+  }
+
+  .dashContent {
+    height: 85vh; /* mobile scroll feature */
+    padding: 0 10px 0;
   }
 
   .dashContent .title {
@@ -279,21 +296,21 @@ input[type="checkbox"] {
   }
 
   .sidebar {
-    display: none;
+    margin-left: -200px;
+    z-index: 500;
+    position: fixed;
+    top: 0;
+    height: 100%;
+    left: 0;
+    transition: 0.3s ease-in-out;
   }
-
-  .sidebar.active-bar {
-    width: 60%; /* Ubah menjadi 100% agar full lebar */
-    height: auto; /* Sesuaikan tinggi secara otomatis */
-    margin-left: 5px; /* Hapus margin kiri negatif */
-    position: fixed; /* Buat sidebar tetap pada posisi */
-    top: 0; /* Atur posisi atas */
-    left: 0; /* Atur posisi kiri */
-    transition: transform 0.3s ease-in-out; /* Transisi untuk animasi */
-    transform: translateX(-100%); /* Sembunyikan sidebar ke kiri */
-  }
-
   
+  .sidebar.active-bar {
+    box-shadow: 65px 0px 150px 500px rgba(0,0,0,0.75); /* background overlay (cheap version) */
+    -webkit-box-shadow: 65px 0px 150px 500px rgba(0,0,0,0.75);
+    -moz-box-shadow: 65px 0px 150px 500px rgba(0,0,0,0.75);
+    margin-left: 0;
+  }
 
   .content {
     height: auto;
