@@ -5,7 +5,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: green;
+  background: linear-gradient(to right, #F6F5F2, #F0EBE3, #F3D0D7, #FFEFEF);
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -23,6 +23,9 @@ body {
   height: 400px;
   width: 800px;
   gap: 8px;
+  box-shadow: 2px 2px 12px 0px rgba(148,135,135,0.75);
+  -webkit-box-shadow: 2px 2px 12px 0px rgba(148,135,135,0.75);
+  -moz-box-shadow: 2px 2px 12px 0px rgba(148,135,135,0.75);
 }
 
 .sidebar {
