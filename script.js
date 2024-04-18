@@ -114,3 +114,103 @@ const saveItem = (saveBtn) => {
   // Tidak perlu menambahkan tombol edit baru, cukup ubah fungsi dan teks pada tombol save menjadi edit
 }
 // TODO - List Logic (END)
+
+
+// Sign Logic (START)
+const canvas = document.querySelector('canvas');
+const ctx = canvas.getContext('2d');
+let writingMode = false;
+let lastX, lastY; // Store the previous position
+
+// Adapt getCursorPosition for touch events
+const getCursorPosition = (event) => {
+  const rect = canvas.getBoundingClientRect();
+  let positionX, positionY;
+
+  if (event.touches) {
+    positionX = event.touches[0].clientX - rect.left;
+    positionY = event.touches[0].clientY - rect.top;
+  } else {
+    positionX = event.clientX - rect.left;
+    positionY = event.clientY - rect.top;
+  }
+
+  return [positionX, positionY];
+}
+
+// Handle touch events
+const handleTouchStart = (event) => {
+  event.preventDefault(); // Prevent scrolling when touching canvas
+  handlePointerDown(event);
+}
+
+const handleTouchMove = (event) => {
+  event.preventDefault(); // Prevent scrolling when touching canvas
+  handlePointerMove(event);
+}
+
+const handleTouchEnd = (event) => {
+  event.preventDefault();
+  handlePointerUp();
+}
+
+const handlePointerDown = (event) => {
+  writingMode = true;
+  ctx.beginPath();
+  const [positionX, positionY] = getCursorPosition(event);
+  ctx.moveTo(positionX, positionY);
+  lastX = positionX;
+  lastY = positionY;
+  // Ketika pengguna mulai menandatangani, ubah teks tombol menjadi 'Clear'
+  clrButton.textContent = 'Clear';
+}
+
+const handlePointerUp = () => {
+  writingMode = false;
+  // Ubah teks tombol menjadi 'Save' setelah pengguna selesai menandatangani
+  saveButton.textContent = 'Save Signature';
+}
+
+const handlePointerMove = (event) => {
+  if (!writingMode) return;
+  const [positionX, positionY] = getCursorPosition(event);
+  ctx.lineTo(positionX, positionY);
+  ctx.stroke();
+  lastX = positionX;
+  lastY = positionY;
+}
+
+canvas.addEventListener('pointerdown', handlePointerDown, { passive: false });
+canvas.addEventListener('pointerup', handlePointerUp, { passive: false });
+canvas.addEventListener('pointermove', handlePointerMove, { passive: false });
+
+// Adding touch event listeners
+canvas.addEventListener('touchstart', handleTouchStart, { passive: false });
+canvas.addEventListener('touchend', handleTouchEnd, { passive: false });
+canvas.addEventListener('touchmove', handleTouchMove, { passive: false });
+
+ctx.lineWidth = 2;
+ctx.lineJoin = ctx.lineCap = 'round';
+
+const saveButton = document.querySelector('.clear-button'); // Tombol yang awalnya untuk 'Clear' sekarang untuk 'Save'
+const clrButton = document.querySelector('.submit-button');
+// Ubah event listener untuk tombol save
+saveButton.addEventListener('click', (event) => {
+  event.preventDefault();
+  if (saveButton.textContent === 'Save Signature') {
+    const imageURL = canvas.toDataURL();
+    const downloadLink = document.createElement('a');
+    downloadLink.href = imageURL;
+    downloadLink.download = 'digitalSignature.png'; // Set the desired file name
+    downloadLink.click(); // Trigger download
+  }
+});
+
+// Fungsionalitas untuk menghapus gambar pada canvas
+clrButton.addEventListener('click', (event) => {
+  event.preventDefault();
+  if (clrButton.textContent === 'Clear') {
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // Menghapus seluruh isi canvas
+  }
+});
+// Sign Logic (END)

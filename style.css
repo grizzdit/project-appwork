@@ -67,6 +67,7 @@ body {
   flex: 1;
   background-color: #FFF;
   border: none;
+  position: relative;
 }
 
 .footer {
@@ -211,8 +212,38 @@ input[type="checkbox"] {
 
 /* PAGE 3 END */
 
+/* PAGE 4 */
+.signature-pad-form {
+  width: 30rem;
+  max-width: 100%;
+  margin-left: 25px;
+  text-align: center;
+}
+.signature-pad {
+  cursor: crosshair;
+  width: 100%;
+  border: 2px solid #4b00ff;
+  border-radius: 4px;
+}
+.btn-group{
+  display: flex;
+  gap: 4px;
+}
+.submit-button, .clear-button {
+  width: 100%;
+  background-color: #4b00ff;
+  border: none;
+  padding: 0.5rem 1rem;
+  color: #fff;
+  cursor: pointer;
+  margin-top: 1rem;
+  font-weight: 600;
+}
+/* PAGE 4 END */
 
 
+
+/* MOBILE RESPONSIVE */
 @media (max-width: 768px) {
   .ham-contain {
     width: 100%;
@@ -319,5 +350,18 @@ input[type="checkbox"] {
   .hamburger {
     display: block;
     cursor: pointer;
+  }
+
+  .signature-pad-form {
+    width: 100%;
+    max-width: 100%;
+    margin: auto;
+    text-align: center;
+  }
+
+  .btn-group{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
   }
 }
