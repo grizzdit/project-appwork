@@ -42,6 +42,33 @@ document.addEventListener('DOMContentLoaded', () => {
 allButton.forEach(btn => btn.setAttribute("onclick", "setPages(this)"))
 // UI Logic Content (END)
 
+// darkmode
+// Ambil elemen toggle dan tema yang akan diubah
+const darkModeToggle = document.getElementById("darkMode");
+const body = document.body;
+
+// Cek status toggle saat halaman dimuat
+if (localStorage.getItem("darkMode") === "enabled") {
+  enableDarkMode();
+}
+
+// Fungsi untuk mengaktifkan dark mode
+function enableDarkMode() {
+  body.classList.add("darkMode");
+  localStorage.setItem("darkMode", "enabled");
+}
+
+// Fungsi untuk menonaktifkan dark mode
+function disableDarkMode() {
+  body.classList.remove("darkMode");
+  localStorage.setItem("darkMode", null);
+}
+
+// Event listener untuk toggle switch
+darkModeToggle.addEventListener("change", () => {
+  darkModeToggle.checked ? enableDarkMode() : disableDarkMode();
+});
+
 
 // TODO - List Logic (START)
 const TODOBTN = document.getElementById('todo-btn')
