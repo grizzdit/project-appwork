@@ -71,19 +71,35 @@ darkModeToggle.addEventListener("change", () => {
 
 
 // TODO - List Logic (START)
+
+// LocalStorage for ToDo's
+let todoListData = JSON.parse(localStorage.getItem('todoList')) || [];
+
+const saveTodoLS = () => {
+  localStorage.setItem('todoList', JSON.stringify(todoListData));
+};
+
 const todoBTN = document.getElementById('todo-btn')
 const todoInput = document.getElementById('todo-input');
+const todoList = document.getElementById('todo-list');
 
 todoBTN.addEventListener('click', function(e) {
   e.preventDefault();
-
+  
   const itemText = todoInput.value.trim();
   
   if (itemText) {
-      addItem(itemText);
-      todoInput.value = ''; // Mengosongkan input setelah ditambahkan
+    addItem(itemText);
+    todoInput.value = ''; // Mengosongkan input setelah ditambahkan
+    
+    todoListData.push(itemText)
+    saveTodoLS();
   }
 });
+
+function getTodoIndex(li) {
+  return Array.from(todoList.children).indexOf(li);
+}
 
 const createButton = (text, onClick) => {
   const button = document.createElement('button');
@@ -93,33 +109,36 @@ const createButton = (text, onClick) => {
 };
 
 const deleteItem = (li) => {
+  const index = getTodoIndex(li);
+  todoListData.splice(index, 1);
+  saveTodoLS();
   li.remove();
 }
 
 const addItem = (text) => {
   var li = document.createElement('li');
   li.textContent = text;
-
+  
   const deleteBtn = createButton("Hapus", () => deleteItem(li));
   const editBtn = createButton("Edit", () => editItem(li, editBtn, deleteBtn));
-
+  
   li.appendChild(editBtn);
   li.appendChild(deleteBtn);
-  document.getElementById('todo-list').appendChild(li);
+  todoList.appendChild(li);
 }
 
 const editItem = (li, editBtn, deleteBtn) => {
   editBtn.remove();
   deleteBtn.remove();
-
+  
   const text = li.textContent.trim();
-
+  
   const input = document.createElement('input');
   input.type = 'text';
   input.value = text;
-
+  
   const saveBtn = createButton("Save", () => saveItem(li, input, editBtn, deleteBtn));
-
+  
   li.innerHTML = ''; // clear html element in li
   li.appendChild(input); // add inputs
   li.appendChild(saveBtn); // add buttons
@@ -127,13 +146,19 @@ const editItem = (li, editBtn, deleteBtn) => {
 
 const saveItem = (li, input, editBtn, deleteBtn) => {
   li.innerHTML = ''; // clear html element in li
-
+  
   const newText = input.value.trim();
   li.textContent = newText;
-
+  
+  const index = getTodoIndex(li);
+  todoListData[index] = newText;
+  saveTodoLS();
+  
   li.appendChild(editBtn);
   li.appendChild(deleteBtn);
 }
+
+todoListData.forEach(item => addItem(item)); // initialize todo's (app start)
 // TODO - List Logic (END)
 
 
