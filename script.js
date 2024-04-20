@@ -71,74 +71,68 @@ darkModeToggle.addEventListener("change", () => {
 
 
 // TODO - List Logic (START)
-const TODOBTN = document.getElementById('todo-btn')
-TODOBTN.addEventListener('click', function() {
-  var itemText = document.getElementById('todo-input').value;
+const todoBTN = document.getElementById('todo-btn')
+const todoInput = document.getElementById('todo-input');
+
+todoBTN.addEventListener('click', function(e) {
+  e.preventDefault();
+
+  const itemText = todoInput.value.trim();
+  
   if (itemText) {
       addItem(itemText);
-      document.getElementById('todo-input').value = ''; // Mengosongkan input setelah ditambahkan
+      todoInput.value = ''; // Mengosongkan input setelah ditambahkan
   }
 });
 
-const deleteItem = (btn) => {
-  console.log(btn);
-  const li = btn.closest("li");
+const createButton = (text, onClick) => {
+  const button = document.createElement('button');
+  button.textContent = text;
+  button.onclick = onClick;
+  return button;
+};
+
+const deleteItem = (li) => {
   li.remove();
 }
 
 const addItem = (text) => {
   var li = document.createElement('li');
-  const editBtn = document.createElement('button');
-  editBtn.textContent = "Edit";
-  editBtn.onclick = function() { editItem(editBtn); };
-
-  const deleteBtn = document.createElement('button');
-  deleteBtn.textContent = "Hapus";
-  deleteBtn.onclick = function() { deleteItem(deleteBtn); };
-
   li.textContent = text;
+
+  const deleteBtn = createButton("Hapus", () => deleteItem(li));
+  const editBtn = createButton("Edit", () => editItem(li, editBtn, deleteBtn));
+
   li.appendChild(editBtn);
   li.appendChild(deleteBtn);
   document.getElementById('todo-list').appendChild(li);
 }
 
-const editItem = (editBtn) => {
-  const li = editBtn.closest("li");
-  const text = li.childNodes[0].nodeValue.trim();
+const editItem = (li, editBtn, deleteBtn) => {
+  editBtn.remove();
+  deleteBtn.remove();
+
+  const text = li.textContent.trim();
+
   const input = document.createElement('input');
   input.type = 'text';
   input.value = text;
-  li.insertBefore(input, li.firstChild);
-  li.removeChild(li.childNodes[1]); // Menghapus teks lama
 
-  const saveBtn = document.createElement('button');
-  saveBtn.textContent = "Save";
-  saveBtn.onclick = function() { saveItem(saveBtn); };
-  li.appendChild(saveBtn);
+  const saveBtn = createButton("Save", () => saveItem(li, input, editBtn, deleteBtn));
 
-  // Sembunyikan tombol edit dan hapus selama mode edit
-  editBtn.style.display = 'none';
-  li.childNodes[2].style.display = 'none'; // Tombol hapus
+  li.innerHTML = ''; // clear html element in li
+  li.appendChild(input); // add inputs
+  li.appendChild(saveBtn); // add buttons
 }
 
-const saveItem = (saveBtn) => {
-  const li = saveBtn.closest("li");
-  const input = li.querySelector('input');
-  const newText = input.value;
+const saveItem = (li, input, editBtn, deleteBtn) => {
+  li.innerHTML = ''; // clear html element in li
 
-  // Membuat teks baru dan menggantikan input field dengan teks
-  li.insertBefore(document.createTextNode(newText + " "), li.firstChild);
-  li.removeChild(input);
+  const newText = input.value.trim();
+  li.textContent = newText;
 
-  // Menampilkan kembali tombol hapus
-  li.childNodes[2].style.display = '';
-
-  // Mengganti tombol save dengan tombol edit yang sudah ada
-  // Pastikan tombol edit hanya satu yang ditampilkan
-  saveBtn.textContent = "Edit";
-  saveBtn.onclick = function() { editItem(saveBtn); };
-
-  // Tidak perlu menambahkan tombol edit baru, cukup ubah fungsi dan teks pada tombol save menjadi edit
+  li.appendChild(editBtn);
+  li.appendChild(deleteBtn);
 }
 // TODO - List Logic (END)
 
