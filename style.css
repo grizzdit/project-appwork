@@ -198,7 +198,44 @@ input[type="checkbox"] {
 /* PAGE 1 END */
 
 /* PAGE 2 */
+.todo-container {
+  width: 30rem;
+  max-width: 100%;
+  border: 2px solid #d61919;
+  margin: auto;
+}
 
+.todo-container form {
+  width: auto;
+  border: 1px solid #2196F3;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  gap: 10px;
+  height: 100%;
+}
+
+input[type=text] {
+  width: 60%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #007bff;
+  border-radius: 4px;
+}
+
+.todo-container button {
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+  background-color: #4299e1;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 16px;
+  border-bottom: 4px solid #2b6cb0;
+  font-weight: 700;
+  color: white;
+}
 /* PAGE 2 END */
 
 
